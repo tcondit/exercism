@@ -11,6 +11,3 @@ def to_rna(dna):
         except KeyError:
             return ''
     return rna
-
-if __name__ == '__main__':
-    print(to_rna('CGGATGATTACA'))
