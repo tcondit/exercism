@@ -116,7 +116,8 @@ class BobTests(unittest.TestCase):
 
     def test_non_question_ends_with_whitespace(self):
         self.assertEqual(
-            'Whatever.', bob.hey('This is a statement with trailing whitespace   ')
+                'Whatever.',
+                bob.hey('This is a statement with trailing whitespace   ')
         )
 
 

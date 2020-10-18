@@ -1,6 +1,3 @@
-import string
-
-
 def word_count(words):
     words = words.decode('utf-8')
     for c in words:
