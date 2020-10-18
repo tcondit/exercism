@@ -13,7 +13,7 @@ stages:
 
 jobs:
   include:
-  - script: flake8 src
+  - script: flake8 python
   - stage: test
     script:
     - sh hello.sh
