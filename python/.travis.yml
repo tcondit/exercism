@@ -1,0 +1,14 @@
+language: python
+
+stages:
+- name: test
+  if: branch != master
+- name: deploy
+  if: branch = master AND type = push
+
+jobs:
+  include:
+  - script: flake8 src
+  - stage: test
+    script:
+    - sh hello.sh
