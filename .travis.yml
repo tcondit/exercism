@@ -1,19 +1,23 @@
 language: python
-
+python:
+- 3.7
+before_install:
+- bash write_pip_config.sh
 install:
-- sudo apt-get update
-- sudo apt install python3-dev flake8
-#- pip install -r requirements.txt
-
-stages:
-- name: test
-  if: branch != master
-- name: deploy
-  if: branch = master AND type = push
-
-jobs:
-  include:
-  - script: flake8 python
-  - stage: test
-    script:
-    - sh hello.sh
+- pip install -r dev-requirements.txt
+script:
+- bash docker.sh update_image --package-name=smartsegmentsml --package-version=2.0.5
+        #- invoke test
+deploy:
+  provider: script
+  script:
+  - invoke deploy-jobs
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(dev|stage|master)$
+env:
+  global:
+  # ARTIFACTORY_USERNAME
+  - secure: TODO
+  # AFTIFACTORY_PASSWORD
+  - secure: TODO
